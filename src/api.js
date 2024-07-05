@@ -14,3 +14,11 @@ module.exports=app;
 
 
 //module export: exporta o objeto que quero usar em outro lugar
+
+
+
+
+
+
+
+
