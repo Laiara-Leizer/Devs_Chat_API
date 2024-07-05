@@ -1,4 +1,4 @@
-const express = requere("express");
+const express = require("express");
 var app = express();
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
@@ -15,20 +15,5 @@ module.exports=app;
 
 //module export: exporta o objeto que quero usar em outro lugar
 
-
-
-
-require("dotenv").config(); 
-const app = require("../src/api");
-
-app.use((req,res, next) => {
-next();
-});
-                     //API_PORT
-let port = process.env.API_PORT || 5000; //mudar pra minha
-
-app.listen(port);
-
-console.log("Iniciando na porta " + port);
 
 
