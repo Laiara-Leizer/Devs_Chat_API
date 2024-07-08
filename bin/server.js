@@ -5,7 +5,7 @@ app.use((req,res, next) => {
 next();
 });
                      //API_PORT
-let port = process.env.PORT || 5000; //mudar pra minha
+let port = process.env.PORT || 3000; //mudar pra minha
 
 app.listen(port);
 

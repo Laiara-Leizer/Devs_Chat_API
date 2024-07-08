@@ -19,16 +19,11 @@ let findAll = async (collection)=>{
 }
 
 
+// const db = require("./db");
 
-
-
-
-
-const db = require("./db");
-
-let listarSalas = async ()=>{
-let salas= await db.findAll("salas");
-return salas;
-};
+// let listarSalas = async ()=>{
+// let salas= await db.findAll("salas");
+// return salas;
+// };
 
 module.exports = {findAll}

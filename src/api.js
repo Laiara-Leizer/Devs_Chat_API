@@ -22,17 +22,21 @@ app.use("/",router.get("/",(req,res, next) => {
     app.use("/",router.get("/sobre", (req, res, next) => {
     res.status(200) .send({
     "nome": "API - CHAT",
-    "versão": "0.1.0",
+    "versão": "1.0.0",
     "autor": "Laiara Leizer"
     })
 }));
     
 
 
+// await async
     
-    app.use("/salas",router.get("/salas", (req, res, next) => {
+    app.use("/salas",router.get("/salas", async (req, res, next) => {
     const salaController = require("./controllers/SalaController");
-    let resp=salaController.get();
+
+    // const salaController = require("../controllers/salaController");
+    //S de novo mds (falar com o prof)
+    let resp = await salaController.get();
     res.status(200).send(resp);
     
     }));
