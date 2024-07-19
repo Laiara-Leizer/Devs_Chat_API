@@ -1,15 +1,8 @@
-
-//tava aqui a constante
-
-// exports.get=async()=>{
-//     return await salaModel.listarSalas();
-// }
-
 exports.get = async() => {
-    // let salaModel = require('../models/SalaModel');
     
-    const salaModel = require('../models/SalaModel');
-//  s   minusculo e maiusculo
+    const SalaModel = require('../models/SalaModel');
 
-    return await salaModel.listarSalas();
+    return await SalaModel.listarSalas();
 }
+
+// exports = {}

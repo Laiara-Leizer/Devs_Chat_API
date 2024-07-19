@@ -4,10 +4,9 @@ const app = require("../src/api");
 app.use((req,res, next) => {
 next();
 });
-                     //API_PORT
-let port = process.env.PORT || 3000; //mudar pra minha
+
+let port = process.env.PORT || 3000;
 
 app.listen(port);
 
 console.log("Iniciando na porta " + port);
-
