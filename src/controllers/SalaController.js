@@ -15,13 +15,13 @@ exports.get = async (req, res) => {
     let usuarioModel=require('../models/usuarioModel');
     let user= await usuarioModel.buscarUsuario(iduser);
 
-    user.sala={_id:sala._id, nome:sala.nome, tipo:sala.tipo};
+    user.sala={_id: sala._id, nome: sala.nome, tipo: sala.tipo};
 
     if(await usuarioModel.alterarUsuario(user)){
       return {msg:"OK", timestamp:timestamp=Date.now()};
     }
     return false;
-  }
+  };
 
 
   // 

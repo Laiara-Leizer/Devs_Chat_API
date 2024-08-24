@@ -1,0 +1,5 @@
+  let resp= await salaController.get();
+      res.status(200).send(resp);
+
+
+      

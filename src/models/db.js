@@ -2,7 +2,7 @@
 // jwt(id,key,time)
 //key é o nick do usuario
 
-const { MongoClient, ObjectId } = require("mongodb");
+const { MongoClient, ObjectId, Collection } = require("mongodb");
 const { listarSalas } = require("./SalaModel");
 
 let singleton;
@@ -33,20 +33,22 @@ async function insertOne(collection, objeto){
 }
 
 
-
+  
 
 let findOne = async (collection, _id)=>{
     const db = await connect();
-    let obj = await db.collection(collection).find({'_id':new ObjectId(_id)}).toArray();
+
+    let obj = await db.collection(Collection).find({'_id':new ObjectId(_id)}).toArray();
+    
     console.log(obj);
-    if(obj)
+
+    if(obj){
       return obj[0];
-    return false;
+    }else{
+      return false;
+    }
   }
-
-
-
-
+  console.log(Collection);
 
   
   
@@ -54,11 +56,11 @@ let findOne = async (collection, _id)=>{
     const db = await connect();
     
     let result= await db.collection(collection).updateOne(param, { $set: object} );
-    console.log(result);
+    
     return result;
+    
   }
+
   
-
-
 
 module.exports = {findAll, insertOne, findOne, updateOne}

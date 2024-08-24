@@ -23,6 +23,27 @@ app.use("/",router.get("/",(req,res, next) => {
     })
 }));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     app.use("/entrar",router.post("/entrar", async(req, res, next) => {
         const usuarioController = require("./controllers/usuarioController");
         let resp= await usuarioController.entrar(req.body.nick);
@@ -47,26 +68,22 @@ const token = require("./util/token.js");
 
 
 
+  app.use("/sala/entrar", router.put("/sala/entrar", async (req, res)=>{
 
 
-
-
-
-
-    app.use("/sala/entrar", router.put("/sala/entrar", async (req, res)=>{
-
-
-      if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
+      if(!await token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) 
+        return false;
       
       
       else{
 
 
-        let resp= await salaController.entrar(req.headers.iduser, req.query.idsala);
+        let resp = await salaController.entrar(req.headers.iduser, req.query.idsala);
+
+        // return true;
+        
         res.status(200).send(resp);
       }
-
-
 
 
     }));

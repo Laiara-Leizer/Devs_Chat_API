@@ -8,19 +8,22 @@ async function registrarUsuario(nick) {
 
 
 
-
+//ULTIMA MODIFICACAO ANTES DO HELPE
 
 
 let buscarUsuario = async (idUser)=>{
     let user = await db.findOne("usuario",idUser);
-
     console.log(buscarUsuario);
     return user;
   }
   
 let alterarUsuario = async (user)=>{
-    return await db.updateOne("usuarios", user,{_id:user._id});
-  }
+  console.log(alterarUsuario);
+    return await db.updateOne("usuario", user, {_id: user._id});
+    
+  };
 
+ 
+  
 
 module.exports = {registrarUsuario, buscarUsuario, alterarUsuario}
