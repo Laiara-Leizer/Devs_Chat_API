@@ -29,8 +29,9 @@ app.use("/",router.get("/",(req,res, next) => {
 
 // await async
     
-    app.use("/",router.get("/salas", async (req, res, next) => {
+    app.use("/salas",router.get("/salas", async (req, res, next) => {
     const SalaController = require("./controllers/SalaController");
+    const token = require("./util/token.js");
 
     // const salaController = require("../controllers/salaController");
     //S de novo mds (falar com o prof)
@@ -39,5 +40,16 @@ app.use("/",router.get("/",(req,res, next) => {
     
     }));
 
+    
+
+
+    
+
+    app.use("/entrar",router.post("/entrar", async(req, res, next) => {
+        const usuarioController = require("./controllers/usuarioController");
+        let resp= await usuarioController.entrar(req.body.nick);
+        res.status(200).send(resp);
+
+    }));
 
     module.exports=app;
