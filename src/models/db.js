@@ -1,4 +1,5 @@
 const { MongoClient, ObjectId } = require("mongodb");
+const { listarSalas } = require("./SalaModel");
 
 let singleton;
 
@@ -16,63 +17,30 @@ return singleton;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let findAll = async (collection)=>{
-    // console.log(collection);
+
     const db = await connect();
-
-    // const resp =await db.collection(collection).find().toArray();
+   
     return await db.collection(collection).find().toArray();
-    // console.log(resp);
 
-    return resp;
-}
+  }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// const db = require("./db");
-
-module.exports = {findAll}
 
 async function insertOne(collection, objeto){
     const db = await connect();
+    console.log(insertOne);
+
+
     return db.collection(collection).insertOne(objeto);
 }
 
-module.exports = {insertOne}
+module.exports = {findAll, insertOne}
 
 
-//pega o token do header a 
 
- 
+//pega o token do header a  
 // jwt(id,key,time)
-
 //key é o nick do usuario
-
-

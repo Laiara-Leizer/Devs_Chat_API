@@ -9,7 +9,7 @@ app.use('/', router.get('/', (req, res)=>{
     res.status(200).send("<h1>API - CHAT</h1>")
 }))
 
-module.exports=app;
+
 
 
 //module export: exporta o objeto que quero usar em outro lugar
@@ -27,29 +27,33 @@ app.use("/",router.get("/",(req,res, next) => {
 }));
     
 
-// await async
-    
-    app.use("/salas",router.get("/salas", async (req, res, next) => {
-    const SalaController = require("./controllers/SalaController");
-    const token = require("./util/token.js");
-
-    // const salaController = require("../controllers/salaController");
-    //S de novo mds (falar com o prof)
-    let resp = await SalaController.get();
-    res.status(200).send(resp);
-    
-    }));
-
-    
-
-
-    
-
     app.use("/entrar",router.post("/entrar", async(req, res, next) => {
         const usuarioController = require("./controllers/usuarioController");
         let resp= await usuarioController.entrar(req.body.nick);
         res.status(200).send(resp);
 
     }));
+// await async
+
+const salaController = require("./controllers/SalaController");
+const token = require("./util/token.js");
+
+
+    app.use("/salas",router.get("/salas", async (req, res,next) => {
+
+      
+
+        if(await token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) {
+        let resp= await salaController.get();
+        res.status(200).send(resp);
+      }else{
+        res.status(400).send({msg:"Usuário não autorizado"});
+      }
+
+    }));
+
+    
+
+ 
 
     module.exports=app;
