@@ -2,14 +2,12 @@ const jwt = require('jsonwebtoken' );
 
 const checktoken = async (token, id, key) => jwt.verify(token, key, (err, decoded) => {
 
-
     if(!id) return false;
     else{
         // console.log(token);
         //RESULTOU EM NADA
         return true;
     }
-
 
 });
 
@@ -21,7 +19,7 @@ const setToken = async (id, key) => {
  if (id) {
     return jwt.sign({id }, key, { expiresIn: 28800 });
 }
-return false;
+    return false;
 };
 
 module.exports = {

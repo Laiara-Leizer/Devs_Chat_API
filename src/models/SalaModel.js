@@ -5,8 +5,18 @@ let listarSalas = async () => {
     return salas;
 };
 
-let buscarSala = async (idsala) => {
-    return db.findOne("salas", idsala);
-};
+
+
+
+let buscarSala = async (idsala)=>{
+    return db.findOne("salas",idsala);
+  }
+
+
+  
+
+
+
+
 
 module.exports = { listarSalas, buscarSala };

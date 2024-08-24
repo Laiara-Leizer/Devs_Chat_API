@@ -9,9 +9,6 @@ app.use('/', router.get('/', (req, res)=>{
     res.status(200).send("<h1>API - CHAT</h1>")
 }))
 
-
-
-
 //module export: exporta o objeto que quero usar em outro lugar
 
 app.use("/",router.get("/",(req,res, next) => {
@@ -25,7 +22,6 @@ app.use("/",router.get("/",(req,res, next) => {
     "autor": "Laiara Leizer"
     })
 }));
-    
 
     app.use("/entrar",router.post("/entrar", async(req, res, next) => {
         const usuarioController = require("./controllers/usuarioController");
@@ -38,10 +34,7 @@ app.use("/",router.get("/",(req,res, next) => {
 const salaController = require("./controllers/SalaController");
 const token = require("./util/token.js");
 
-
     app.use("/salas",router.get("/salas", async (req, res,next) => {
-
-      
 
         if(await token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) {
         let resp= await salaController.get();
@@ -52,8 +45,34 @@ const token = require("./util/token.js");
 
     }));
 
+
+
+
+
+
+
+
+
+    app.use("/sala/entrar", router.put("/sala/entrar", async (req, res)=>{
+
+
+      if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
+      
+      
+      else{
+
+
+        let resp= await salaController.entrar(req.headers.iduser, req.query.idsala);
+        res.status(200).send(resp);
+      }
+
+
+
+
+    }));
     
 
- 
 
-    module.exports=app;
+
+
+module.exports=app;
