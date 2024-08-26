@@ -28,39 +28,41 @@ let findAll = async (collection)=>{
 
 async function insertOne(collection, objeto){
     const db = await connect();
-    // console.log(insertOne);
+    console.log(insertOne);
     return db.collection(collection).insertOne(objeto);
 }
 
 
-  
+  //to pasando Objectid
+  let findOne = async (collection, _id, ObjectId)=>{
 
-let findOne = async (collection, _id)=>{
     const db = await connect();
-
-    let obj = await db.collection(Collection).find({'_id':new ObjectId(_id)}).toArray();
     
-    console.log(obj);
-
-    if(obj){
+    let obj= await db.collection(collection).find({'_id':new ObjectId(_id)}).toArray();
+    if(obj)
       return obj[0];
-    }else{
-      return false;
-    }
+    return false;
   }
-  console.log(Collection);
-
   
   
   let updateOne= async (collection, object, param)=>{
     const db = await connect();
-    
     let result= await db.collection(collection).updateOne(param, { $set: object} );
-    
     return result;
-    
   }
-
   
 
+
+  console.log(Collection);
+
+
+
+
+
+
+
+
+
+
+  
 module.exports = {findAll, insertOne, findOne, updateOne}
