@@ -57,7 +57,7 @@ const token = require("./util/token.js");
 
     app.use("/salas",router.get("/salas", async (req, res,next) => {
 
-        if(await token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) {
+        if(await token.checktoken(req.headers.token,req.headers.idUser,req.headers.nick)) {
         let resp= await salaController.get();
         res.status(200).send(resp);
       }else{
@@ -69,9 +69,9 @@ const token = require("./util/token.js");
 
 
  
-    app.use("/sala/entrar", router.put("/sala/entrar", async (req, res)=>{
+    app.use("/sala/entrar", router.post("/sala/entrar", async (req, res)=>{
       if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
-      let resp= await salaController.entrar(req.headers.iduser, req.query.idsala);
+      let resp= await salaController.entrar(req.headers.idUser, req.query.idsala);
       res.status(200).send(resp);
     }));
     

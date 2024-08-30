@@ -33,8 +33,20 @@ async function insertOne(collection, objeto){
 }
 
 
+
+
+
+
+
+// function ObjectIdConstructor(ObjectId,_id) {
+//   return new ObjectId(_id);
+// }
+
+
+
+
   //to pasando Objectid
-  let findOne = async (collection, _id, ObjectId)=>{
+  let findOne = async (collection, _id)=>{
 
     const db = await connect();
     
