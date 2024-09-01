@@ -23,62 +23,35 @@ app.use("/",router.get("/",(req,res, next) => {
     })
 }));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    app.use("/entrar",router.post("/entrar", async(req, res, next) => {
-        const usuarioController = require("./controllers/usuarioController");
-        let resp= await usuarioController.entrar(req.body.nick);
-        res.status(200).send(resp);
-
-    }));
 // await async
 
-const salaController = require("./controllers/SalaController");
+const salaController = require("./controllers/SalaController.js");
 const token = require("./util/token.js");
+const { listarSalas } = require("./models/SalaModel.js");
 
     app.use("/salas",router.get("/salas", async (req, res,next) => {
-
-        if(await token.checktoken(req.headers.token,req.headers.idUser,req.headers.nick)) {
-        let resp= await salaController.get();
+      if(await token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) {
+        let resp = await salaController.get();
         res.status(200).send(resp);
       }else{
         res.status(400).send({msg:"Usuário não autorizado"});
       }
 
     }));
-
-
-
- 
-    app.use("/sala/entrar", router.post("/sala/entrar", async (req, res)=>{
-      if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
-      let resp= await salaController.entrar(req.headers.idUser, req.query.idsala);
+    
+    
+    app.use("/sala/entrar",router.put("/sala/entrar", async(req, res, next) => {
+      const usuarioController = require("./controllers/usuarioController");   
+      let resp= await usuarioController.entrar(req.body.nick);
       res.status(200).send(resp);
-    }));
-    
+  }));
 
 
 
+    module.exports = app;
 
-    
 
-module.exports=app;
+
+    // console.log(listarSalas);
+    // console.log(token);
+    // console.log(salaController);

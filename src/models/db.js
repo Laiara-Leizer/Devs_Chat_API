@@ -78,3 +78,27 @@ async function insertOne(collection, objeto){
 
   
 module.exports = {findAll, insertOne, findOne, updateOne}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
