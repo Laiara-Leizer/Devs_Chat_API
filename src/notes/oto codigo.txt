@@ -40,3 +40,94 @@ let updateOne = async (collection, object, param) => {
 }
 
 module.exports = { findAll, insertOne, findOne, updateOne }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+salaController
+
+  // exports.entrar= async (iduser,idsala)=>{
+  //   const salaModel = require('../models/SalaModel');
+  //   const sala = await salaModel.buscarSala(idsala);
+  //   // const usuarioModel = require('./models/usuarioModel.js');
+  //   let usuarioModel= require('../models/usuarioModel');
+  //   let user = await usuarioModel.buscarUsuario(iduser);
+  //   console.log(sala);
+  //   console.log(user);
+
+  //  // Registrar o usuário
+
+
+
+
+
+  //     user.sala={_id:sala._id, nome:sala.nome, tipo:sala.tipo};
+
+  //   if(await usuarioModel.alterarUsuario(user)){
+  //     return {msg:"OK", timestamp:timestamp=Date.now()};
+  //   }
+  //   return false;
+  // }
+

@@ -23,6 +23,46 @@ app.use("/",router.get("/",(req,res, next) => {
     })
 }));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // await async
 
 const salaController = require("./controllers/SalaController.js");
@@ -40,14 +80,17 @@ const { listarSalas } = require("./models/SalaModel.js");
     }));
     
     
-    app.use("/sala/entrar",router.put("/sala/entrar", async(req, res, next) => {
+    app.use("/entrar",router.post("/entrar", async(req, res, next) => {
       const usuarioController = require("./controllers/usuarioController");   
       let resp= await usuarioController.entrar(req.body.nick);
       res.status(200).send(resp);
   }));
 
-
-
+  app.use('/sala/entrar', router.put('/sala/entrar', async (req, res)=>{
+    if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
+    let resp= await salaController.entrar(req.headers.iduser, req.query.idsala);
+    res.status(200).send(resp);
+  }))
     module.exports = app;
 
 

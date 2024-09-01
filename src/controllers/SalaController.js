@@ -4,25 +4,29 @@ exports.get = async (req, res) => {
     return await salaModel.listarSalas();
   }
 
-  // 
 
-  exports.entrar = async (idUser,idsala)=>{
+
+
+  exports.entrar = async (iduser, idsala) => {
     const salaModel = require('../models/SalaModel');
     const sala = await salaModel.buscarSala(idsala);
-    let usuarioModel= require('../models/usuarioModel');
-    let user = await usuarioModel.buscarUsuario(idUser);
-    console.log(sala);
+    const usuarioModel = require('../models/usuarioModel');
+    const user = await usuarioModel.buscarUsuario(iduser);
 
-    user.sala = {_id:sala._id, nome:sala.nome, tipo:sala.tipo};
-    
-    console.log(user);
-
-    if(await usuarioModel.alterarUsuario(user)){
-      return {msg:"OK", timestamp:timestamp=Date.now()};
+    if (!user) {
+        console.error("Usuário não encontrado.");
+        return false;
     }
-    return false;
-  };
-  
-  // 
+
+    // Inicialize a propriedade sala no objeto user
+    user.sala = { _id: sala._id, nome: sala.nome, tipo: sala.tipo };
+
+    if (await usuarioModel.alterarUsuario(user)) {
+        return { msg: "OK", timestamp: Date.now() };
+    } else {
+        console.error("Erro ao atualizar o usuário.");
+        return false;
+    }
+};
 
 exports = {};

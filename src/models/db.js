@@ -4,7 +4,6 @@
 
 const { MongoClient, ObjectId, Collection } = require("mongodb");
 const { listarSalas } = require("./SalaModel");
-
 let singleton;
 
 async function connect() {
@@ -28,28 +27,14 @@ let findAll = async (collection)=>{
 
 async function insertOne(collection, objeto){
     const db = await connect();
-    console.log(insertOne);
+    // console.log(insertOne);
+    //insertOne
     return db.collection(collection).insertOne(objeto);
 }
 
-
-
-
-
-
-
-// function ObjectIdConstructor(ObjectId,_id) {
-//   return new ObjectId(_id);
-// }
-
-
-
-
   //to pasando Objectid
   let findOne = async (collection, _id)=>{
-
     const db = await connect();
-    
     let obj= await db.collection(collection).find({'_id':new ObjectId(_id)}).toArray();
     if(obj)
       return obj[0];
@@ -62,43 +47,7 @@ async function insertOne(collection, objeto){
     let result= await db.collection(collection).updateOne(param, { $set: object} );
     return result;
   }
-  
-
 
   console.log(Collection);
-
-
-
-
-
-
-
-
-
-
   
 module.exports = {findAll, insertOne, findOne, updateOne}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
