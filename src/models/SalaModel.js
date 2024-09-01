@@ -8,14 +8,16 @@ let listarSalas = async () => {
 };
 
 let buscarSala = async (idsala)=>{
-//   console.log(buscarSala);
+  // console.log(buscarSala);
     return db.findOne("salas",idsala);
   }
 
-  
+  let atualizarMensagens=async (sala)=>{
+    return await db.updateOne("salas", sala,{_id:sala._id});
+  }
 
 
 // console.log(listarSalas);
 // Aparece
 
-module.exports = { listarSalas, buscarSala };
+module.exports = { listarSalas, buscarSala, atualizarMensagens };
