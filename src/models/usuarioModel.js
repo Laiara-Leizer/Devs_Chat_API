@@ -9,7 +9,7 @@ let buscarUsuario = async (iduser)=>{
 }
 
 let alterarUsuario = async (user)=>{
-	return await db.updateOne("usuarios", user,{_id:user._id});
+	return await db.updateOne("usuario", user,{_id:user._id});
 }
 
 
