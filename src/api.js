@@ -60,6 +60,12 @@ const { listarSalas } = require("./models/SalaModel.js");
   }));
   
 
+  app.use("/sala/mensagens/", router.get("/sala/mensagens", async (req, res) => {
+    if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
+    let resp= await salaController.buscarMensagens(req.query.idsala, req.query.timestamp);
+    res.status(200).send(resp);
+  }));
+  //aqui
   
 
     module.exports = app;

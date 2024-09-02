@@ -48,6 +48,8 @@ async function insertOne(collection, objeto){
     return result;
   }
 
+  
+
   console.log(Collection);
   
 module.exports = {findAll, insertOne, findOne, updateOne}

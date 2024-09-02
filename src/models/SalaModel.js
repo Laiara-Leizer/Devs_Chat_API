@@ -16,8 +16,28 @@ let buscarSala = async (idsala)=>{
     return await db.updateOne("salas", sala,{_id:sala._id});
   }
 
+  let buscarMensagens = async (idsala, timestamp)=>{
+    let sala = await buscarSala(idsala);
+
+    if(!sala){
+      console.error("sala nao encontrada.");
+    }
+    
+    if(sala.msgs){
+      let msgs=[];
+      sala.msgs.forEach((msg)=>{
+        if(msg.timestamp >= timestamp){
+          msgs.push(msg);
+        }
+      });
+      return msgs;
+    }
+    return [];
+}
+
+//aqui
 
 // console.log(listarSalas);
 // Aparece
 
-module.exports = { listarSalas, buscarSala, atualizarMensagens };
+module.exports = { listarSalas, buscarSala, atualizarMensagens, buscarMensagens };
