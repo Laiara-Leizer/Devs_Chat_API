@@ -41,14 +41,11 @@ async function insertOne(collection, objeto){
     return false;
   }
   
-  
   let updateOne= async (collection, object, param)=>{
     const db = await connect();
     let result= await db.collection(collection).updateOne(param, { $set: object} );
     return result;
   }
-
-  
 
   console.log(Collection);
   
