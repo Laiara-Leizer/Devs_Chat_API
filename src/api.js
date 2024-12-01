@@ -175,49 +175,25 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const express = require("express");
 const app = express();
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
-const router = express.Router();
-
-// Configuração do servidor
+// Removido o HOST fixo pois o Render gerencia isso internamente
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '0.0.0.0';
+
 
 app.get('/', (req, res) => {
-    res.status(200).send("<h1>API - CHAT</h1>")
+  res.status(200).send("<h1>API - CHAT</h1>")
 });
 
 app.get("/sobre", (req, res) => {
-    res.status(200).send({
-        "nome": "API - CHAT",
-        "versão": "1.0.0",
-        "autor": "Laiara Leizer"
-    })
+  res.status(200).send({
+      "nome": "API - CHAT",
+      "versão": "1.0.0",
+      "autor": "Laiara Leizer"
+  })
 });
 
 const salaController = require("./controllers/SalaController.js");
@@ -225,40 +201,41 @@ const token = require("./util/token.js");
 const { listarSalas } = require("./models/SalaModel.js");
 
 app.get("/salas", async (req, res) => {
-    if(await token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) {
-        let resp = await salaController.get();
-        res.status(200).send(resp);
-    } else {
-        res.status(400).send({msg:"Usuário não autorizado"});
-    }
+  if(await token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) {
+      let resp = await salaController.get();
+      res.status(200).send(resp);
+  } else {
+      res.status(400).send({msg:"Usuário não autorizado"});
+  }
 });
 
 app.post("/entrar", async(req, res) => {
-    const usuarioController = require("./controllers/usuarioController");   
-    let resp = await usuarioController.entrar(req.body.nick);
-    res.status(200).send(resp);
+  const usuarioController = require("./controllers/usuarioController");   
+  let resp = await usuarioController.entrar(req.body.nick);
+  res.status(200).send(resp);
 });
 
 app.put('/sala/entrar', async (req, res) => {
-    if(!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) return false;
-    let resp = await salaController.entrar(req.headers.iduser, req.query.idsala);
-    res.status(200).send(resp);
+  if(!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) return false;
+  let resp = await salaController.entrar(req.headers.iduser, req.query.idsala);
+  res.status(200).send(resp);
 });
 
 app.post("/sala/mensagem", async (req, res) => {
-    if(!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) return false;
-    let resp = await salaController.enviarMensagem(req.headers.nick, req.body.msg, req.body.idsala);
-    res.status(200).send(resp);
+  if(!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) return false;
+  let resp = await salaController.enviarMensagem(req.headers.nick, req.body.msg, req.body.idsala);
+  res.status(200).send(resp);
 });
 
 app.get("/sala/mensagens", async (req, res) => {
-    if(!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) return false;
-    let resp = await salaController.buscarMensagens(req.query.idsala, req.query.timestamp);
-    res.status(200).send(resp);
+  if(!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)) return false;
+  let resp = await salaController.buscarMensagens(req.query.idsala, req.query.timestamp);
+  res.status(200).send(resp);
 });
 
-app.listen(PORT, HOST, () => {
-    console.log(`Server running on http://${HOST}:${PORT}`);
+// Modificado para usar apenas a PORT
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;
