@@ -135,11 +135,34 @@ const { listarSalas } = require("./models/SalaModel.js");
       res.status(200).send(resp);
   }));
 
-  app.use('/sala/entrar', router.put('/sala/entrar', async (req, res)=>{
-    if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
-    let resp= await salaController.entrar(req.headers.iduser, req.query.idsala);
+
+
+
+
+
+
+  
+
+  // app.use('/sala/entrar', router.put('/sala/entrar', async (req, res)=>{
+  //   if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
+  //   let resp= await salaController.entrar(req.headers.iduser, req.query.idsala);
+  //   res.status(200).send(resp);
+  // }));
+
+  app.use("/entrar",router.post("/entrar", async(req, res, next) => {
+    const usuarioController = require("./controllers/usuarioController");   
+    let resp= await usuarioController.entrar(req.body.nick);
     res.status(200).send(resp);
-  }))
+  }));
+
+
+
+
+
+
+
+
+
 
 
   app.use("/sala/mensagem/", router.post("/sala/mensagem", async (req, res) => {
