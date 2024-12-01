@@ -1,0 +1,31 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Chat",
+  "main": "./bin/server.js",
+  "scripts": {
+    "start": "node ./bin/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laiara13/Chat.git"
+  },
+  "keywords": [
+    "node",
+    "chat",
+    "api"
+  ],
+  "author": "Laiara Leizer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laiara13/Chat/issues"
+  },
+  "homepage": "https://github.com/Laiara13/Chat#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.8.0"
+  }
+}

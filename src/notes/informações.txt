@@ -1,0 +1,5 @@
+  let resp= await salaController.get();
+      res.status(200).send(resp);
+
+
+      Ta riscado o coiso pq eu n passei ele (db.js) ObjectId
