@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
+  
+    "type": "module",
     "url": "git+https://github.com/Laiara13/Chat.git"
   },
   "keywords": [

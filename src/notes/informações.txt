@@ -3,3 +3,7 @@
 
 
       Ta riscado o coiso pq eu n passei ele (db.js) ObjectId
+
+
+
+  No packge.json foi mudado para module o type. Antes era assim: "type": "git",
