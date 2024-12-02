@@ -3,6 +3,9 @@ var app = express();
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
+const cors = require('cors');
+app.use(cors());
+
 const router = express.Router();
 
 app.use('/', router.get('/', (req, res)=>{
