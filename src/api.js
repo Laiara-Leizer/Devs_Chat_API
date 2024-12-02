@@ -40,11 +40,28 @@ const { listarSalas } = require("./models/SalaModel.js");
     }));
     
     
-    app.use("/entrar",router.post("/entrar", async(req, res, next) => {
-      const usuarioController = require("./controllers/usuarioController");   
-      let resp= await usuarioController.entrar(req.body.nick);
-      res.status(200).send(resp);
-  }));
+  //   app.use("/entrar",router.post("/entrar", async(req, res, next) => {
+  //     const usuarioController = require("./controllers/usuarioController");   
+  //     let resp= await usuarioController.entrar(req.body.nick);
+  //     res.status(200).send(resp);
+  // }));
+
+  app.post("/entrar", async(req, res) => {
+    const usuarioController = require("./controllers/usuarioController");   
+    try {
+      let resp = await usuarioController.entrar(req.body.nick);
+      res.status(200).json(resp);
+    } catch (error) {
+      console.error("Erro ao entrar:", error);
+      res.status(500).json({ error: "Erro interno do servidor" 
+      });
+    }
+  });
+
+
+
+
+
 
   app.use('/sala/entrar', router.put('/sala/entrar', async (req, res)=>{
     if(!token.checktoken(req.headers.token,req.headers.iduser,req.headers.nick)) return false;
