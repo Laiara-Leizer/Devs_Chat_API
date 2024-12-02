@@ -69,6 +69,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const { findOne } = require('../util/db');
+
 // Importando a função findAll corretamente
 const { findAll, findOne, updateOne } = require("./db");
 

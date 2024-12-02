@@ -55,15 +55,64 @@
 // jwt(id,key,time)
 //key é o nick do usuario
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const { MongoClient, ObjectId } = require("mongodb");
 let singleton;
 
 async function connect() {
   if (singleton) return singleton;
-  const client = new MongoClient(process.env.DB_HOST);
-  await client.connect();
-  singleton = client.db(process.env.DB);
-  return singleton;
+
+  const client = new MongoClient(process.env.DB_HOST, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    await client.connect();
+    console.log("Conectado ao MongoDB");
+    singleton = client.db(process.env.DB);
+    return singleton;
+  } catch (error) {
+    console.error("Erro ao conectar ao MongoDB:", error);
+    throw error;
+  }
 }
 
 let findAll = async (collection) => {

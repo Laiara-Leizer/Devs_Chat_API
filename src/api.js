@@ -49,12 +49,16 @@ const { listarSalas } = require("./models/SalaModel.js");
   app.post("/entrar", async(req, res) => {
     const usuarioController = require("./controllers/usuarioController");   
     try {
+      console.log("Requisição recebida em /entrar:", req.body);
+      if (!req.body.nick) {
+        return res.status(400).json({ error: "Nick não fornecido" });
+      }
       let resp = await usuarioController.entrar(req.body.nick);
+      console.log("Resposta do usuarioController:", resp);
       res.status(200).json(resp);
     } catch (error) {
       console.error("Erro ao entrar:", error);
-      res.status(500).json({ error: "Erro interno do servidor" 
-      });
+      res.status(500).json({ error: "Erro interno do servidor", details: error.message });
     }
   });
 
